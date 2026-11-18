@@ -52,36 +52,41 @@
 
 
         form.addEventListener("submit", (event) => {
-            
+
             event.preventDefault();
-            
+
             const name = document.querySelector("#name").value.trim();
             const password = document.querySelector("#password").value;
 
             btn.classList.add("click")
 
-            setTimeout(()=>{
+            setTimeout(() => {
 
-            if (name != "harsh") {
-                alert("Enter a valid name");
-            }
-            else if (password.length < 8) {
-                alert("Password must be at least 8 characters");
-            } 
-            else if (password != 12345678) {
-                alert("wrong password try again")
-            }
-            else {
-                alert(" login Successful")
-            }
-           
-            },100)
-            
-            setTimeout(()=>{
+                if (name != localStorage.getItem("name",name)) {
+                    alert("Enter a valid name");
+                }
+                else if (password.length < 8) {
+                    alert("Password must be at least 8 characters");
+                }
+                else if (password != localStorage.getItem("password",password)) {
+                    alert("wrong password try again")
+                }
+                else {
+                    alert(" login Successful");
+                    form.reset();
+
+                }
+
+            }, 100)
+
+            setTimeout(() => {
                 btn.classList.remove("click")
-            },300)
+            }, 300)
+
+
+
         });
-            
+
 
 
 
