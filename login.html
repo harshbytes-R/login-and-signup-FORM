@@ -41,6 +41,7 @@
     </div>
 
     <script>
+
         const form = document.querySelector("#form");
         const forget = document.querySelector("#Forgot");
 
@@ -48,26 +49,41 @@
             alert("Such a irresponsible person🤣");
         });
 
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
 
+
+        form.addEventListener("submit", (event) => {
+            
+            event.preventDefault();
+            
             const name = document.querySelector("#name").value.trim();
             const password = document.querySelector("#password").value;
 
+            btn.classList.add("click")
+
+            setTimeout(()=>{
+
             if (name != "harsh") {
                 alert("Enter a valid name");
-                
             }
             else if (password.length < 8) {
                 alert("Password must be at least 8 characters");
-            } else if(password != 12345678){
+            } 
+            else if (password != 12345678) {
                 alert("wrong password try again")
             }
             else {
                 alert(" login Successful")
             }
+           
+            },100)
+            
+            setTimeout(()=>{
+                btn.classList.remove("click")
+            },300)
         });
- 
+            
+
+
 
 
     </script>
