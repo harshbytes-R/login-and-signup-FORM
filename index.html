@@ -13,9 +13,49 @@
 
 <body>
 
-    <div class="login-container">
 
-        <form id="form">
+
+    <!-- signup -->
+    <div id="signupPage" class="login-container">
+
+        <form id="form1">
+
+            <h1>Sign up</h1>
+            <div class="input-box">
+                <input type="text" id="signupName" name="Username" placeholder=" Enter Your Username">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="Email" id="signupEmail" name="Email" placeholder=" Enter Your Email">
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="createPassword" placeholder="Create Password">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="confirm-password" placeholder=" Confirm-Password">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+
+            <button id="signupBtn" type="submit">Sign up</button>
+            <div class="register-link">
+                Already have an account?<a onclick="showlogin()">  Login now</a>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+
+
+    <!-- login -->
+    <div id="loginPage" class="login-container" style="display: none;">
+
+        <form id="loginForm">
 
             <h1>Login</h1>
             <div class="input-box">
@@ -33,16 +73,70 @@
 
             <button id="btn" type="submit">Login</button>
             <div class="register-link">
-                Don't have an account?<a href="signup.html">Register</a>
+                Don't have an account?<a onclick="hideLogin() ">  Signup</a>
             </div>
 
         </form>
-
     </div>
+
+
+
+
 
     <script>
 
-        const form = document.querySelector("#form");
+        //signup
+        const form1 = document.querySelector("#form1");
+
+        form1.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const signupName = document.querySelector("#signupName").value.trim();
+
+            const signupEmail = document.querySelector("#signupEmail").value.trim();
+            const createPassword = document.querySelector("#createPassword").value;
+            const confirmPassword = document.querySelector("#confirm-password").value;
+
+            const signupBtn = document.querySelector("#signupBtn");
+            signupBtn.classList.add("click");
+
+            setTimeout(() => {
+                if (signupName === "") {
+                    alert("Enter a valid name");
+                }
+                else if (!/[^\s@]+@[^\s@]+[^\s@]+$/.test(signupEmail)) {
+                    alert("Enter a valid email")
+                }
+                else if (createPassword.length < 8) {
+                    alert("Password must be at least 8 characters");
+                }
+                else if (confirmPassword != createPassword) {
+                    alert("Password does not match");
+                }
+                else {
+                    alert("Sign up Complete! GO to login page ");
+                    localStorage.setItem("name", signupName,);
+                    localStorage.setItem("email", signupEmail,);    // I KNOW ITS WORNG 
+                    localStorage.setItem("password", createPassword);
+                    form1.reset();
+                    showlogin()
+                }
+
+            }, 100)
+
+            setTimeout(() => {
+                signupBtn.classList.remove("click")
+            }, 300)
+
+        });
+
+
+
+
+
+        //login
+
+        const loginForm = document.querySelector("#loginForm");
         const forget = document.querySelector("#Forgot");
 
         forget.addEventListener("click", () => {
@@ -50,8 +144,7 @@
         });
 
 
-
-        form.addEventListener("submit", (event) => {
+        loginForm.addEventListener("submit", (event) => {
 
             event.preventDefault();
 
@@ -62,18 +155,18 @@
 
             setTimeout(() => {
 
-                if (name != localStorage.getItem("name",name)) {
+                if (name != localStorage.getItem("name", name)) {
                     alert("Enter a valid name");
                 }
                 else if (password.length < 8) {
                     alert("Password must be at least 8 characters");
                 }
-                else if (password != localStorage.getItem("password",password)) {
+                else if (password != localStorage.getItem("password", password)) {
                     alert("wrong password try again")
                 }
                 else {
                     alert(" login Successful");
-                    form.reset();
+                    loginForm.reset();
 
                 }
 
@@ -88,7 +181,18 @@
         });
 
 
+        function showlogin() {
+            document.querySelector("#signupPage").style.display = "none"
+            document.querySelector("#loginPage").style.display = "block"
+        };
 
+
+
+        function hideLogin() {
+            document.querySelector("#signupPage").style.display = "block"
+            document.querySelector("#loginPage").style.display = "none"
+
+        }
 
 
     </script>
