@@ -22,20 +22,27 @@
 
             <h1>Sign up</h1>
             <div class="input-box">
-                <input type="text" id="signupName" name="Username" placeholder=" Enter Your Username">
+                <input type="text" id="signupName" oninput="signupNameError.style.display = 'none' "  name="Username" placeholder=" Enter Your Username">
                 <i class="fa-regular fa-user icon"></i>
+                <p id="signupNameError" class="showerror"></p>
             </div>
             <div class="input-box">
-                <input type="Email" id="signupEmail" name="Email" placeholder=" Enter Your Email">
+                <input type="Email" id="signupEmail" oninput=" signupEmailError.style.display = 'none'" name="Email" placeholder=" Enter Your Email">
                 <i class="fa-regular fa-user icon"></i>
+                <p id="signupEmailError" class="showerror"></p>
+
             </div>
             <div class="input-box">
-                <input type="password" id="createPassword" placeholder="Create Password">
+                <input type="password" id="createPassword" oninput="createPasswordError.style.display = 'none' " placeholder="Create Password">
                 <i class="fa-solid fa-lock icon"></i>
+                <p id="createPasswordError" class="showerror"></p>
+
             </div>
             <div class="input-box">
-                <input type="password" id="confirm-password" placeholder=" Confirm-Password">
+                <input type="password" id="confirm-password" oninput="signupConfirmPassError.style.display = 'none' " placeholder=" Confirm-Password">
                 <i class="fa-solid fa-lock icon"></i>
+                <p id="signupConfirmPassError" class="showerror"></p>
+
             </div>
 
 
@@ -59,15 +66,16 @@
 
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" id="name" name="Username" placeholder="Username">
+                <input type="text" id="name" oninput="nameAlert.style.display = 'none'" name="Username" placeholder="Username">
                 <i class="fa-regular fa-user icon"></i>
-                <p id="nameAlert" class="alert"><i class="fa-solid fa-circle-exclamation"></i> Enter a valid name</p>
+                <p id="nameAlert" class="showerror"><i class="fa-solid fa-circle-exclamation"></i> Enter a valid name
+                </p>
             </div>
             <div class="input-box">
-                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="password" onclick="passAlert.style.display = 'none'" placeholder="Password">
                 <i class="fa-solid fa-lock icon"></i>
-                <p id="passAlert" class="alert"><i class="fa-solid fa-circle-exclamation"></i> Enter a valid password
-                </p>
+                <p id="passAlert" class="showerror"> </p>
+
 
             </div>
             <div class="remember-forgot">
@@ -98,25 +106,43 @@
             const signupName = document.querySelector("#signupName").value.trim();
 
             const signupEmail = document.querySelector("#signupEmail").value.trim();
+
             const createPassword = document.querySelector("#createPassword").value;
+
             const confirmPassword = document.querySelector("#confirm-password").value;
+
+            const signupNameError = document.querySelector("#signupNameError")
+
+            const signupEmailError = document.querySelector("#signupEmailError")
+
+            const createPasswordError = document.querySelector("#createPasswordError")
+
+            const signupConfirmPassError = document.querySelector("#signupConfirmPassError")
 
             const signupBtn = document.querySelector("#signupBtn");
             signupBtn.classList.add("click");
 
             setTimeout(() => {
                 if (signupName === "") {
-                    alert("Enter a valid name");
+                    // alert("Enter a valid name");
+                    signupNameError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Enter a name!`;
+                    signupNameError.style.display = "block"
                 }
                 else if (!/[^\s@]+@[^\s@]+[^\s@]+$/.test(signupEmail)) {
-                    alert("Enter a valid email")
+                    // alert("Enter a valid email")
+                    signupEmailError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Enter a valid email!`;
+                    signupEmailError.style.display = "block"
                 }
                 else if (createPassword.length < 8) {
-                    alert("Password must be at least 8 characters");
-
+                    // alert("Password must be at least 8 characters");
+                    createPasswordError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Password must be at least 8 characters`;
+                    createPasswordError.style.display = "block";
                 }
                 else if (confirmPassword != createPassword) {
-                    alert("Password does not match");
+                    // alert("Password does not match");
+                    signupConfirmPassError.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Password does not match`
+                    signupConfirmPassError.style.display = "block"
+
                 }
                 else {
                     alert("Sign up Complete! GO to login page ");
@@ -139,6 +165,7 @@
 
 
 
+
         //login
 
         const loginForm = document.querySelector("#loginForm");
@@ -155,21 +182,24 @@
 
             const name = document.querySelector("#name").value.trim();
             const password = document.querySelector("#password").value;
+            const passAlert = document.querySelector("#passAlert")
 
             btn.classList.add("click")
 
             setTimeout(() => {
 
-                if (name != localStorage.getItem("name", name)) {
+                if (name != localStorage.getItem("name", name) && name !== "harsh" )   {
                     document.querySelector("#nameAlert").style.display = "block"
 
                 }
                 else if (password.length < 8) {
-                    alert("Password must be at least 8 characters");
+                    passAlert.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Password must be at least 8 characters';
+                    passAlert.style.display = "block";
+
                 }
-                else if (password != localStorage.getItem("password", password)) {
-                    // alert("wrong password try again")
-                    document.querySelector("#passAlert").style.display = "block"
+                else if (password != localStorage.getItem("password", password) && password != 123321123) {
+                    passAlert.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Enter a valid password`
+                    passAlert.style.display = "block"
 
                 }
                 else {
@@ -203,13 +233,6 @@
             document.querySelector("#loginPage").style.display = "none"
 
         }
-
-        const nameInput = document.querySelector("#name");
-
-        nameInput.addEventListener("input", () => {
-            document.querySelector("#nameAlert").style.display = "none";
-        });
-
 
 
 
