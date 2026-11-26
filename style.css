@@ -1,65 +1,70 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
-body{
-     
+
+body {
+
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image:url(bgimg.jpg);
+    background-image: url(bgimg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
 }
 
-.login-container{
+.login-container {
     width: 100%;
     max-width: 420px;
-    background:transparent;
-    border: 2px solid rgba(255, 255, 255, .2 );
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2 );
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     backdrop-filter: blur(20px);
     color: #fff;
     padding: 30px 40px;
     border-radius: 10px;
 }
-.login-container h1{
+
+.login-container h1 {
     font-size: 36px;
     text-align: center;
 }
-.login-container .input-box{
+
+.login-container .input-box {
     position: relative;
     width: 100%;
     height: 50px;
-    margin: 30px 0 ;
+    margin: 30px 0;
 }
 
-.input-box input{
+.input-box input {
     width: 100%;
     height: 100%;
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, .2 );
+    border: 2px solid rgba(255, 255, 255, .2);
     border-radius: 40px;
     font-size: 16px;
     color: #fff;
     padding: 20px;
 }
 
-.input-box input:hover{
+.input-box input:hover {
     transform: translateY(-1px);
-   
+
 }
-input::placeholder{
+
+input::placeholder {
     color: #fff;
 }
-.icon{
+
+.icon {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -67,11 +72,12 @@ input::placeholder{
     font-size: 20px;
     cursor: text;
 }
-.remember-forgot{
+
+.remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin: -10px 0 15px; 
+    margin: -10px 0 15px;
 }
 
 .remember-forgot label {
@@ -85,52 +91,57 @@ input::placeholder{
 
     margin: 0;
 }
-a{
+
+a {
     text-decoration: none;
     color: #fff;
     transition: 0.3s;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-button{
-   width: 100%;
-   height: 45px;
-   font-size: 14px;
+button {
+    width: 100%;
+    height: 45px;
+    font-size: 14px;
     border: none;
     outline: none;
     border-radius: 40px;
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.5s;
     background-color: #fff;
 
 }
-button:hover{
+
+button:hover {
     background: #d5cfcf;
-    
+
 }
-button.click{
+
+button.click {
     transform: translateY(-3px);
     background: #d5cfcf77;
     transition: 0.3s;
-    
+
 }
 
-.register-link{
+.register-link {
     text-align: center;
     font-size: 14px;
     margin: 20px 0 15px;
 }
-.register-link a{
+
+.register-link a {
     font-weight: 600;
 
 }
 
 
 /* showerror */
-.showerror{
+.showerror {
     display: none;
     margin-top: 5px;
     margin-left: 15px;
@@ -139,6 +150,44 @@ button.click{
 
 }
 
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 65px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    width: 100%;
+    max-width: 520px;
+    height: 300px;
+    padding: 30px 40px;
+    margin: 15% auto;
+    border-radius: 10px;
+    position: relative;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    cursor: pointer;
+    font-size: 35px;
+}
 
 /* ===========================
    Tablets (768px and below)
@@ -200,7 +249,7 @@ button.click{
         margin: 10px 0 15px;
     }
 
-    
+
     button {
         height: 42px;
         font-size: 15px;
@@ -237,9 +286,3 @@ button.click{
         font-size: 14px;
     }
 }
-
-
-
-
-
- 
